@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Application</title>
+
     <link rel="stylesheet" href="/BudgetApplication/css/estilos.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Strike&display=swap" rel="stylesheet">
+
 </head>
 <body onload="cargarApp(); mostrarReloj()">
     <div class="cabecero">
@@ -46,10 +49,56 @@
         </div>
     </div>
 
+    <div class="contenedor limpiarEstilos">
+        <div class="ingreso">
+            <h2 class="ingreso_titulo">Incomes</h2>
+            <div id="lista-ingresos">
+                <div class="elemento limpiarEstilos">
+                    <div class="elemento_descripcion">Salary</div>
+                    <div class="derecha limpiarEstilos">
+                        <div class="elemento_valor">+2,300.00</div>
+                        <div class="elemento_eliminar">
+                            <button class="elemento_eliminar--btn">
+                                <ion-icon name="close-circle-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elemento limpiarEstilos">
+                    <div class="elemento_descripcion">Savings</div>
+                    <div class="derecha limpiarEstilos">
+                        <div class="elemento_valor">+5,760.00</div>
+                        <div class="elemento_eliminar">
+                            <button class="elemento_eliminar--btn">
+                                <ion-icon name="close-circle-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="egreso">
+            <h2 class="egreso_titulo">Expenses</h2>
+            <div id="lista-egresos">
+                <div class="elemento limpiarEstilos">
+                    <div class="elemento_descripcion">Apartment</div>
+                    <div class="derecha limpiarEstilos">
+                        <div class="elemento_valor">-900</div>
+                        <div class="elemento_porcentaje">25%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="/BudgetApplication/js/Dato.js"></script>
     <script src="/BudgetApplication/js/Ingreso.js"></script>
     <script src="/BudgetApplication/js/Egreso.js"></script>
     <script src="/BudgetApplication/js/app.js"></script>
     <script src="/BudgetApplication/js/reloj.js"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" type="module"></script>
+    
 </body>
 </html>

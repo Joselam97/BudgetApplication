@@ -3,22 +3,21 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 10px;
     color: #fcfcfc;
-    text-align: center;
 }
 
-/*
+
 .reloj-contenedor {
-    background-color: rgba(40,185,181, 0.3);
+    background-color: rgba(255,80,73, 0.3);
     padding: 5px;
     text-align: center;
     border-radius: 5px;
-}*/
+}
 
 #hora {
-    font-size: 17px;
+    font-size: 15px;
 }
 
 #fecha {
@@ -52,7 +51,7 @@ body {
 
 .derecha { float: right; }
 .rojo { color: #FF5049 !important; }
-.rojofocus:focus { border: 1px solid #FF5049 !important; }
+.rojofocus:focus { border: 1px solid #ff5049 !important; }
 
 .cabecero {
     height: 40vh;
@@ -201,6 +200,7 @@ body {
 .agregar_btn:focus { outline: none; }
 
 .contenedor {
+    font-family: 'Fira Sans',sans-serif;
     width: 860px;
     margin: 60px auto;
 }
@@ -209,11 +209,13 @@ body {
     float: left;
     width: 370px;
     margin-right: 70px;
+    font-style: normal;
 }
 
 .egreso {
     float: left;
     width: 370px;
+    font-style: normal;
 }
 
 h2 {
@@ -221,6 +223,7 @@ h2 {
     font-size: 18px;
     font-weight: 400;
     margin-bottom: 15px;
+    font-style: italic;
 }
 
 .ingreso_titulo { color: #28B9B5; }
