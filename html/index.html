@@ -7,8 +7,18 @@
     <link rel="stylesheet" href="/BudgetApplication/css/estilos.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 </head>
-<body onload="cargarApp()">
+<body onload="cargarApp(); mostrarReloj()">
     <div class="cabecero">
+
+        <!--Reloj-->
+        <div id="reloj" class="reloj-superior-derecha">
+            <div class="reloj-contenedor">
+                <div id="hora"></div>
+                <div id="fecha"></div>
+            </div>
+        </div>
+
+        <!--Budget App-->
         <div class="presupuesto">
 
             <div class="presupuesto_titulo">
@@ -40,5 +50,6 @@
     <script src="/BudgetApplication/js/Ingreso.js"></script>
     <script src="/BudgetApplication/js/Egreso.js"></script>
     <script src="/BudgetApplication/js/app.js"></script>
+    <script src="/BudgetApplication/js/reloj.js"></script>
 </body>
 </html>
