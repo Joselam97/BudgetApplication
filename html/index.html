@@ -1,89 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Application</title>
 
+    <!-- Enlaces a los estilos CSS de la aplicación -->
     <link rel="stylesheet" href="/BudgetApplication/css/estilos.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Strike&display=swap" rel="stylesheet">
 
 </head>
+<!-- Llama a cargarApp y mostrarReloj al cargar la página -->
 <body onload="cargarApp(); mostrarReloj()">
+    <!-- Contenedor principal del encabezado -->
     <div class="cabecero">
 
         <!--Reloj-->
-        <div id="reloj" class="reloj-superior-derecha">
+        <div id="reloj" class="reloj-superior-derecha"> <!-- Contenedor del reloj en la esquina superior derecha -->
             <div class="reloj-contenedor">
-                <div id="hora"></div>
-                <div id="fecha"></div>
+                <div id="hora"></div> <!--LLama la hora-->
+                <div id="fecha"></div> <!--Llama la fecha-->
             </div>
         </div>
 
         <!--Budget App-->
-        <div class="presupuesto">
+        <div class="presupuesto"> <!-- Contenedor del presupuesto principal -->
 
             <div class="presupuesto_titulo">
                 Available Budget
             </div>
 
-            <div class="presupuesto_valor" id="presupuesto">+ 8,000.00</div>
+            <div class="presupuesto_valor" id="presupuesto">&nbsp;</div> <!-- Muestra el valor del presupuesto total -->
 
+            <!-- Sección de ingresos -->
             <div class="presupuesto_ingreso limpiarEstilos">
-                <div class="presupuesto_ingreso--texto">Income</div>
+                <div class="presupuesto_ingreso--texto">Income</div> <!-- Texto que indica "Incomes" -->
                 <div class="derecha">
-                    <div class="presupuesto_ingreso--valor" id="ingresos">+4,000.00</div>
-                    <div class="presupuesto_ingreso--porcentaje">&nbsp;</div>
+                    <div class="presupuesto_ingreso--valor" id="ingresos">&nbsp;</div> <!-- Valor total de ingresos -->
+                    <div class="presupuesto_ingreso--porcentaje">&nbsp;</div> <!-- Espacio para el porcentaje de ingresos -->
                 </div>
             </div>
 
+            <!-- Sección de egresos -->
             <div class="presupuesto_egreso limpiarEstilos">
-                <div class="presupuesto_egreso--texto">Expense</div>
+                <div class="presupuesto_egreso--texto">Expense</div> <!-- Texto que indica "Expenses" -->
                 <div class="derecha limpiarEstilos">
-                    <div class="presupuesto_egreso--valor" id="egresos">-1,900.00</div>
-                    <div class="presupuesto_egreso--porcentaje" id="porcentaje">45%</div>
+                    <div class="presupuesto_egreso--valor" id="egresos">&nbsp;</div> <!-- Valor total de egresos -->
+                    <div class="presupuesto_egreso--porcentaje" id="porcentaje">&nbsp;</div> <!-- Espacio para el porcentaje de egresos -->
                 </div>
             </div>
 
         </div>
     </div>
 
+    <!-- Formulario para agregar nuevos ingresos o egresos -->
     <form id="forma" onsubmit="return false;"> <!--"false" Es Porque NO se envia a servidor, solo se ve del lado del cliente-->
         <div class="agregar">
             <div class="agregar_contenedor">
+                <!-- Selección del tipo de dato: ingreso o egreso -->
                 <select class="agregar_tipo" id="tipo">
-                    <option value="ingreso" selected>+</option>
-                    <option value="egreso">-</option>
+                    <option value="ingreso" selected>+</option> <!-- Opción para agregar un ingreso -->
+                    <option value="egreso">-</option> <!-- Opción para agregar un egreso -->
                 </select>
-                <input type="text" class="agregar_descripcion" placeholder="Agregar Descripcion" id="descripcion"/>
-                <input type="number" class="agregar_valor" placeholder="Valor" id="valor" step="any"/>
-                <button class="agregar_btn" onclick="agregarDato()">
-                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                <input type="text" class="agregar_descripcion" placeholder="Agregar Descripcion" id="descripcion"/> <!-- Campo para descripción -->
+                <input type="number" class="agregar_valor" placeholder="Valor" id="valor" step="any"/> <!-- Campo para ingresar el valor -->
+                <button class="agregar_btn" onclick="agregarDato()"> <!-- Botón para agregar el dato usando la función agregarDato() -->
+                    <ion-icon name="checkmark-circle-outline"></ion-icon> <!-- Icono de confirmación -->
                 </button>
             </div>
         </div>
     </form>
 
-    <div class="contenedor limpiarEstilos">
+    <div class="contenedor limpiarEstilos"> <!-- Contenedor principal de ingresos y egresos listados -->
 
+        <!-- Listado de ingresos -->
         <div class="ingreso">
             <h2 class="ingreso_titulo">Incomes</h2>
-            <div id="lista-ingresos"></div>
+            <div id="lista-ingresos"></div> <!-- Contenedor donde se mostrarán los ingresos -->
         </div>
 
-        
+        <!-- Listado de egresos -->
         <div class="egreso">
-            <h2 class="egreso_titulo">Expenses</h2>
+            <h2 class="egreso_titulo">Expenses</h2> <!-- Título de la lista de egresos -->
             <div id="lista-egresos">
                 <div class="elemento limpiarEstilos">
-                    <div class="elemento_descripcion">Apartment</div>
+                    <div class="elemento_descripcion">&nbsp;</div>
                     <div class="derecha limpiarEstilos">
-                        <div class="elemento_valor">-900</div>
-                        <div class="elemento_porcentaje">25%</div>
+                        <div class="elemento_valor">-&nbsp;</div> <!-- Monto del egreso -->
+                        <div class="elemento_porcentaje">&nbsp;%</div> <!-- Porcentaje del egreso respecto al presupuesto total -->
                         <div class="elemento_eliminar">
-                            <button class="elemento_eliminar--btn">
-                                <ion-icon name="close-circle-outline"></ion-icon>
+                            <button class="elemento_eliminar--btn"> <!-- Botón para eliminar el egreso -->
+                                <ion-icon name="close-circle-outline"></ion-icon> <!-- Icono de eliminación -->
                             </button>
                         </div>
                     </div>
@@ -94,6 +103,7 @@
 
     </div>
 
+    <!-- Archivos JavaScript necesarios para la aplicación -->
     <script src="/BudgetApplication/js/Dato.js"></script>
     <script src="/BudgetApplication/js/Ingreso.js"></script>
     <script src="/BudgetApplication/js/Egreso.js"></script>

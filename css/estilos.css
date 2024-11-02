@@ -1,70 +1,71 @@
 /*Codigo para reloj*/
-#reloj {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-family: 'Roboto', sans-serif;
+#reloj { /* id='reloj' */
+    position: absolute; /* Posiciona el reloj en relación al contenedor principal */
+    top: 10px; /* Distancia desde la parte superior */
+    right: 10px; /* Distancia desde el lado derecho */
+    font-family: 'Roboto', sans-serif; 
     font-size: 10px;
     color: #fcfcfc;
 }
 
 
 .reloj-contenedor {
-    background-color: rgba(255,80,73, 0.3);
-    padding: 5px;
-    text-align: center;
-    border-radius: 5px;
+    background-color: rgba(255,80,73, 0.3); /* Fondo semitransparente */
+    padding: 5px; /* Espacio alrededor del contenido interno */
+    text-align: center; /* Centra el texto en el contenedor */
+    border-radius: 5px; /* Bordes redondeados */
 }
 
-#hora {
+#hora { /* id='hora' */
     font-size: 15px;
 }
 
-#fecha {
+#fecha { /* id='fecha' */
     font-size: 12px;
-    letter-spacing: 1px;
+    letter-spacing: 1px; /* Espaciado entre letras */
 }
 
 
 /* Codigo para app */
 
-* {
+* { /* aplica a todo */
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
 }
 
 .limpiarEstilos::after {
-    content: "";
-    display: table;
-    clear: both;
+    content: ""; /* Añade un espacio vacío después del elemento */
+    display: table; /* Estilo para corrección de desbordamiento */
+    clear: both; /* Limpia los flotados en el elemento */
 }
 
 body {
     color: #555;
     font-family: Open Sans;
     font-size: 16px;
-    position: relative;
-    height: 100vh;
-    font-weight: 400;
+    position: relative; /* Permite posicionar elementos en relación al body */
+    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+    font-weight: 400; /* Peso de la fuente normal */
 }
 
-.derecha { float: right; }
-.rojo { color: #FF5049 !important; }
-.rojofocus:focus { border: 1px solid #ff5049 !important; }
+.derecha { float: right; } /* Alinea el elemento a la derecha */
+.rojo { color: #FF5049 !important; } /* Color rojo para texto, !important para prioridad */
+.rojofocus:focus { border: 1px solid #ff5049 !important; } /* Borde rojo al enfocar */
 
+/* Estilos del encabezado */
 .cabecero {
-    height: 40vh;
-    background-size: cover;
-    background-position: center;
+    height: 40vh; /* Altura del 40% de la pantalla */
+    background-size: cover; /* Ajusta el fondo para cubrir todo el área */
+    background-position: center; /* Centra la imagen de fondo */
     position: relative;
     width: 100%;
     padding-top: 150px;
     padding-bottom: 100px;
     color: #fff;
     background: url(fondo.png), #7b4397;
-    background: url(fondo.png), -webkit-gradient(linear, right top, left top, from(#7b4397), to(#dc2430));
-    background: url(fondo.png), linear-gradient(to left, #7b4397, #dc2430)
+    background: url(fondo.png), -webkit-gradient(linear, right top, left top, from(#7b4397), to(#dc2430)); /* Degradado de color de fondo */
+    background: url(fondo.png), linear-gradient(to left, #7b4397, #dc2430) /* Degradado de color de fondo */
 }
 
 .presupuesto {
@@ -72,7 +73,7 @@ body {
     width: 350px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /* Centra el presupuesto en la pantalla */
     font-family: 'Roboto';
     color: #fff;
 }
@@ -92,6 +93,7 @@ body {
     letter-spacing: 2px;
 }
 
+/* Estilos de ingresos y egresos */
 .presupuesto_ingreso,
 .presupuesto_egreso {
     padding: 12px;
@@ -100,11 +102,11 @@ body {
 
 .presupuesto_ingreso {
     margin-bottom: 10px;
-    background-color: #28b9b5;
+    background-color: #28b9b5; /* Color de fondo de ingresos */
 }
 
 .presupuesto_egreso {
-    background-color: #FF5049;
+    background-color: #FF5049; /* Color de fondo de egresos */
 }
 
 .presupuesto_ingreso--texto,
@@ -137,6 +139,7 @@ body {
 }
 
 
+/* Formulario de agregar ingreso o egreso */
 .agregar {
     padding: 14px;
     border-bottom: 1px solid #e7e7e7;
@@ -188,7 +191,7 @@ body {
     margin-left: 10px;
 }
 
-.agregar_btn:active { transform: translateY(2px); }
+.agregar_btn:active { transform: translateY(2px); } /* Efecto de presionar en el botón */
 
 .agregar_tipo:focus,
 .agregar_descripcion:focus,
@@ -199,6 +202,7 @@ body {
 
 .agregar_btn:focus { outline: none; }
 
+/* Contenedor principal */
 .contenedor {
     font-family: 'Fira Sans',sans-serif;
     width: 860px;
@@ -229,6 +233,7 @@ h2 {
 .ingreso_titulo { color: #28B9B5; }
 .egreso_titulo { color: #FF5049; }
 
+/* Elemento de la lista de ingresos o egresos */
 .elemento {
     padding: 13px;
     border-bottom: 1px solid #e7e7e7;
