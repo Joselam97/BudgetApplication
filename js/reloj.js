@@ -18,7 +18,7 @@ const mostrarReloj = () => {
     let dia = fecha.getDate();
     let mes = meses[fecha.getMonth()];
     let year = fecha.getFullYear();
-    let fechaTexto = `${diaSemana}, ${dia}/${mes}/${year}`;
+    let fechaTexto = `${diaSemana}, ${mes}/${dia}/${year}`;
 
     document.getElementById('fecha').innerHTML = fechaTexto;
 };
