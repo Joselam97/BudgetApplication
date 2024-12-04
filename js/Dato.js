@@ -1,7 +1,7 @@
 class Dato{
     constructor(descripcion,valor){
-        this._descripcion = descripcion;
-        this._valor = valor;
+        this._descripcion = descripcion; // Private property to hold the description
+        this._valor = valor; // Private property to hold the value
     }
     
     get descripcion(){
@@ -14,6 +14,6 @@ class Dato{
         return this._valor;
     }
     set valor(valor){
-        this._valor = this.valor;
+        this._valor = valor;
     }
 }

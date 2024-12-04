@@ -1,60 +1,64 @@
+// Arrays to store income and expense objects
 const ingresos = [];
 const egresos = [];
 
+// Main function to initialize the application by loading header and data
 let cargarApp = ()=>{
-    cargarCabecero();
-    cargarIngresos();
-    cargarEgresos();
+    cargarCabecero(); // Updates the header with budget and percentage
+    cargarIngresos(); // Displays all income records in the DOM
+    cargarEgresos(); // Displays all expense records in the DOM
 }
 
+// Calculates the total income by summing up all income values in the 'ingresos' array
 let totalIngresos = ()=>{
     let totalIngreso = 0;
-    for(let ingreso of ingresos){ // Itera sobre cada ingreso
-        totalIngreso += ingreso.valor; // Suma el valor de cada ingreso al total
+    for(let ingreso of ingresos){ 
+        totalIngreso += ingreso.valor; // Adds each income's value to the total
     }
     return totalIngreso;
 }
 
+// Calculates the total expenses by summing up all expense values in the 'egresos' array
 let totalEgresos = ()=>{
     let totalEgreso = 0;
-    for(let egreso of egresos){ // Itera sobre cada egreso
-        totalEgreso += egreso.valor; // Suma el valor de cada egreso al total
+    for(let egreso of egresos){ 
+        totalEgreso += egreso.valor;  // Adds each expense's value to the total
     }
     return totalEgreso;
 }
 
-// Actualiza el encabezado con el presupuesto y porcentaje de egresos
+// Updates the header section with the budget and expense percentage
 let cargarCabecero = ()=>{
-    let presupuesto = totalIngresos() - totalEgresos(); // Calcula el presupuesto total
-    let porcentajeEgreso = totalEgresos()/totalIngresos(); // Calcula el porcentaje de egresos
+    let presupuesto = totalIngresos() - totalEgresos(); // Computes the total budget
+    let porcentajeEgreso = totalEgresos()/totalIngresos(); // Computes the expense percentage
 
-    // Muestra los valores formateados en el DOM, ubicandolos por 'id'
+    // Updates the DOM elements with formatted budget, percentages, and totals
     document.getElementById('presupuesto').innerHTML = formatoMoneda(presupuesto);
     document.getElementById('porcentaje').innerHTML = formatoPorcentaje(porcentajeEgreso);
     document.getElementById('ingresos').innerHTML = formatoMoneda(totalIngresos());
     document.getElementById('egresos').innerHTML = formatoMoneda(totalEgresos());
 }
 
-// Formatea valores como moneda
+// Formats a numerical value as a currency in USD with two decimal places
 const formatoMoneda = (valor)=>{
     return valor.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2});
 }
 
-// Formatea valores como porcentaje con dos decimales
+// Formats a numerical value as a percentage with two decimal places
 const formatoPorcentaje = (valor)=>{
     return valor.toLocaleString('en-US',{style:'percent',minimumFractionDigits:2});
 }
 
-// Genera el HTML para mostrar los ingresos y lo inserta en el DOM
+// Generates the HTML content for the list of incomes and injects it into the DOM
 const cargarIngresos = ()=>{
     let ingresosHTML = '';
     for(let ingreso of ingresos){
-        ingresosHTML += crearIngresoHTML(ingreso); // Genera el HTML para cada ingreso 
+        ingresosHTML += crearIngresoHTML(ingreso); // Creates HTML for each income record 
     }
-    document.getElementById('lista-ingresos').innerHTML = ingresosHTML; // Inserta el HTML en el contenedor de ingresos
+    document.getElementById('lista-ingresos').innerHTML = ingresosHTML; // Inserts the income list into the container
 }
 
-// Crea el HTML de un ingreso individual, esta funcion es llamada en el bloque anterior ^
+// Creates the HTML structure for a single income entry
 const crearIngresoHTML = (ingreso)=>{
     let ingresoHTML = `
     <div class="elemento limpiarEstilos">
@@ -69,27 +73,27 @@ const crearIngresoHTML = (ingreso)=>{
         </div>
     </div>
     `;
-    return ingresoHTML;
+    return ingresoHTML; // Returns the HTML string for the income entry
 };
 
-// Elimina un ingreso basado en su 'id'
+// Removes an income record based on its 'id' and updates the display
 const eliminarIngreso = (id)=>{
-    let indiceEliminar = ingresos.findIndex(ingreso => ingreso.id === id); // Busca el índice del ingreso
-    ingresos.splice(indiceEliminar,1); // Elimina un indice del array por medio de splice()
-    cargarCabecero(); // Actualiza el encabezado
-    cargarIngresos(); // Actualiza la lista de ingresos
+    let indiceEliminar = ingresos.findIndex(ingreso => ingreso.id === id); // Finds the index of the income to remove
+    ingresos.splice(indiceEliminar,1); // Removes the income from the array
+    cargarCabecero(); // Updates the header
+    cargarIngresos(); // Updates the income list in the DOM
 }
 
-// Genera el HTML para mostrar los egresos y lo inserta en el DOM
+// Generates the HTML content for the list of expenses and injects it into the DOM
 const cargarEgresos = ()=>{
     let egresosHTML = '';
     for(let egreso of egresos){
-        egresosHTML += crearEgresoHTML(egreso); // Genera el HTML para cada egreso
+        egresosHTML += crearEgresoHTML(egreso); // Creates HTML for each expense record
     }
-    document.getElementById('lista-egresos').innerHTML = egresosHTML; // Inserta el HTML en el contenedor de egresos
+    document.getElementById('lista-egresos').innerHTML = egresosHTML; // Inserts the expense list into the container
 }
 
-// Crea el HTML de un egreso individual
+// Creates the HTML structure for a single expense entry
 const crearEgresoHTML = (egreso)=>{
     let egresoHTML = `
     <div class="elemento limpiarEstilos">
@@ -105,29 +109,30 @@ const crearEgresoHTML = (egreso)=>{
         </div>
     </div>
     `;
-    return egresoHTML
+    return egresoHTML // Returns the HTML string for the expense entry
 }
 
+// Removes an expense record based on its 'id' and updates the display
 const eliminarEgreso = (id)=>{
-    let indiceEliminar = egresos.findIndex(egreso => egreso.id === id); // Busca el índice del egreso
-    egresos.splice(indiceEliminar,1); // Elimina por splice()
+    let indiceEliminar = egresos.findIndex(egreso => egreso.id === id); // Finds the index of the expense to remove
+    egresos.splice(indiceEliminar,1); // Removes the expense from the array
     cargarCabecero();
     cargarEgresos();
 }
 
-// Agrega un nuevo dato (ingreso o egreso) basado en los valores del formulario
+// Adds a new income or expense record based on the form input
 let agregarDato = ()=>{
-    let forma = document.forms['forma']; // Accede al formulario con el id 'forma' y lo asigna a la variable 'forma'
-    let tipo = forma['tipo']; // Obtiene el elemento de tipo (ingreso o egreso) del formulario y lo asigna a la variable 'tipo'
-    let descripcion = forma['descripcion'];  // Obtiene el campo de descripción del formulario y lo asigna a la variable 'descripcion'
-    let valor = forma['valor']; // Obtiene el campo de valor del formulario y lo asigna a la variable 'valor'
-    if(descripcion.value !== '' && valor.value !== ''){  // Comprueba que los campos de 'descripcion' y 'valor' no estén vacíos
-        if(tipo.value === 'ingreso'){ // Comprueba si el tipo seleccionado es 'ingreso'
-            ingresos.push(new Ingreso(descripcion.value, Number(valor.value))); // Crea un nuevo objeto 'Ingreso' usando los valores de 'descripcion' y 'valor' del formulario
+    let forma = document.forms['forma']; // Accesses the form element with the id 'forma'
+    let tipo = forma['tipo']; // Retrieves the 'type' field (income or expense)
+    let descripcion = forma['descripcion'];  // Retrieves the 'description' field
+    let valor = forma['valor']; // Retrieves the 'value' field
+    if(descripcion.value !== '' && valor.value !== ''){  // Ensures the fields are not empty
+        if(tipo.value === 'ingreso'){ // If the type is 'income'
+            ingresos.push(new Ingreso(descripcion.value, Number(valor.value))); // Adds a new income record
             cargarCabecero();
             cargarIngresos();
-        } else if(tipo.value === 'egreso'){ // Si el tipo seleccionado es 'egreso', ejecuta este bloque
-            egresos.push(new Egreso(descripcion.value, Number(valor.value))); // Crea un nuevo objeto 'Egreso' con los valores de 'descripcion' y 'valor' y lo añade al array 'egresos'
+        } else if(tipo.value === 'egreso'){ // If the type is 'expense'
+            egresos.push(new Egreso(descripcion.value, Number(valor.value))); // Adds a new expense record
             cargarCabecero();
             cargarEgresos();
         }

@@ -6,93 +6,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Application</title>
 
-    <!-- Enlaces a los estilos CSS de la aplicación -->
-    <link rel="stylesheet" href="/BudgetApplication/css/estilos.css"/>
+    <!-- Links to CSS styles -->
+    <link rel="stylesheet" href="/css/estilos.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Strike&display=swap" rel="stylesheet">
 
 </head>
-<!-- Llama a cargarApp y mostrarReloj al cargar la página -->
+<!-- Calls functions cargarApp() and mostrarReloj() when the page loads -->
 <body onload="cargarApp(); mostrarReloj()">
-    <!-- Contenedor principal del encabezado -->
+    <!-- Header section -->
     <div class="cabecero">
 
-        <!--Reloj-->
-        <div id="reloj" class="reloj-superior-derecha"> <!-- Contenedor del reloj en la esquina superior derecha -->
+        <!-- Clock container -->
+        <div id="reloj" class="reloj-superior-derecha"> <!-- Positioned at the top right -->
             <div class="reloj-contenedor">
-                <div id="hora"></div> <!--LLama la hora-->
-                <div id="fecha"></div> <!--Llama la fecha-->
+                <div id="hora"></div> <!-- Displays the current hour -->
+                <div id="fecha"></div> <!-- Displays the current date -->
             </div>
         </div>
 
-        <!--Budget App-->
-        <div class="presupuesto"> <!-- Contenedor del presupuesto principal -->
+        <!-- Main budget display -->
+        <div class="presupuesto"> <!-- Displays budget information -->
 
+            <!-- Title -->
             <div class="presupuesto_titulo">
                 Available Budget
             </div>
 
-            <div class="presupuesto_valor" id="presupuesto">&nbsp;</div> <!-- Muestra el valor del presupuesto total -->
+            <div class="presupuesto_valor" id="presupuesto">&nbsp;</div> <!-- Fills dynamically with the total budget -->
 
-            <!-- Sección de ingresos -->
+            <!-- Income section -->
             <div class="presupuesto_ingreso limpiarEstilos">
-                <div class="presupuesto_ingreso--texto">Income</div> <!-- Texto que indica "Incomes" -->
+                <div class="presupuesto_ingreso--texto">Income</div> <!-- Label for income -->
                 <div class="derecha">
-                    <div class="presupuesto_ingreso--valor" id="ingresos">&nbsp;</div> <!-- Valor total de ingresos -->
-                    <div class="presupuesto_ingreso--porcentaje">&nbsp;</div> <!-- Espacio para el porcentaje de ingresos -->
+                    <div class="presupuesto_ingreso--valor" id="ingresos">&nbsp;</div> <!-- Displays total income -->
+                    <div class="presupuesto_ingreso--porcentaje">&nbsp;</div> <!-- Placeholder for income percentage -->
                 </div>
             </div>
 
-            <!-- Sección de egresos -->
+            <!-- Expense section -->
             <div class="presupuesto_egreso limpiarEstilos">
-                <div class="presupuesto_egreso--texto">Expense</div> <!-- Texto que indica "Expenses" -->
+                <div class="presupuesto_egreso--texto">Expense</div> <!-- Label for expenses -->
                 <div class="derecha limpiarEstilos">
-                    <div class="presupuesto_egreso--valor" id="egresos">&nbsp;</div> <!-- Valor total de egresos -->
-                    <div class="presupuesto_egreso--porcentaje" id="porcentaje">&nbsp;</div> <!-- Espacio para el porcentaje de egresos -->
+                    <div class="presupuesto_egreso--valor" id="egresos">&nbsp;</div> <!-- Displays total expenses -->
+                    <div class="presupuesto_egreso--porcentaje" id="porcentaje">&nbsp;</div> <!-- Displays percentage of expenses -->
                 </div>
             </div>
 
         </div>
     </div>
 
-    <!-- Formulario para agregar nuevos ingresos o egresos -->
-    <form id="forma" onsubmit="return false;"> <!--"false" Es Porque NO se envia a servidor, solo se ve del lado del cliente-->
+    <!-- Form to add new income or expenses -->
+    <form id="forma" onsubmit="return false;"> <!-- Prevents default form submission -->
         <div class="agregar">
             <div class="agregar_contenedor">
-                <!-- Selección del tipo de dato: ingreso o egreso -->
+                <!-- Type selection dropdown -->
                 <select class="agregar_tipo" id="tipo">
-                    <option value="ingreso" selected>+</option> <!-- Opción para agregar un ingreso -->
-                    <option value="egreso">-</option> <!-- Opción para agregar un egreso -->
+                    <option value="ingreso" selected>+</option> <!-- For income -->
+                    <option value="egreso">-</option> <!-- For expenses -->
                 </select>
-                <input type="text" class="agregar_descripcion" placeholder="Agregar Descripcion" id="descripcion"/> <!-- Campo para descripción -->
-                <input type="number" class="agregar_valor" placeholder="Valor" id="valor" step="any"/> <!-- Campo para ingresar el valor -->
-                <button class="agregar_btn" onclick="agregarDato()"> <!-- Botón para agregar el dato usando la función agregarDato() -->
-                    <ion-icon name="checkmark-circle-outline"></ion-icon> <!-- Icono de confirmación -->
+
+                <!-- Description input field -->
+                <input type="text" class="agregar_descripcion" placeholder="Agregar Descripcion" id="descripcion"/> 
+                <!-- Value input field -->
+                <input type="number" class="agregar_valor" placeholder="Valor" id="valor" step="any"/> 
+                <!-- Button to add data -->
+                <button class="agregar_btn" onclick="agregarDato()"> 
+                    <!-- Checkmark icon -->
+                    <ion-icon name="checkmark-circle-outline"></ion-icon> 
                 </button>
             </div>
         </div>
     </form>
 
-    <div class="contenedor limpiarEstilos"> <!-- Contenedor principal de ingresos y egresos listados -->
+     <!-- Container for listing incomes and expenses -->
+    <div class="contenedor limpiarEstilos"> 
 
-        <!-- Listado de ingresos -->
+        <!-- Income list -->
         <div class="ingreso">
             <h2 class="ingreso_titulo">Incomes</h2>
-            <div id="lista-ingresos"></div> <!-- Contenedor donde se mostrarán los ingresos -->
+            <div id="lista-ingresos"></div> <!-- Dynamically populated income list -->
         </div>
 
-        <!-- Listado de egresos -->
+        <!-- Expense list -->
         <div class="egreso">
-            <h2 class="egreso_titulo">Expenses</h2> <!-- Título de la lista de egresos -->
+            <h2 class="egreso_titulo">Expenses</h2> 
             <div id="lista-egresos">
                 <div class="elemento limpiarEstilos">
-                    <div class="elemento_descripcion">&nbsp;</div>
+                    <div class="elemento_descripcion">&nbsp;</div> <!-- Placeholder for description -->
                     <div class="derecha limpiarEstilos">
-                        <div class="elemento_valor">-&nbsp;</div> <!-- Monto del egreso -->
-                        <div class="elemento_porcentaje">&nbsp;%</div> <!-- Porcentaje del egreso respecto al presupuesto total -->
+                        <div class="elemento_valor">-&nbsp;</div> <!-- Placeholder for value -->
+                        <div class="elemento_porcentaje">&nbsp;%</div> <!-- Placeholder for percentage -->
                         <div class="elemento_eliminar">
-                            <button class="elemento_eliminar--btn"> <!-- Botón para eliminar el egreso -->
-                                <ion-icon name="close-circle-outline"></ion-icon> <!-- Icono de eliminación -->
+                            <button class="elemento_eliminar--btn"> <!-- Delete button -->
+                                <ion-icon name="close-circle-outline"></ion-icon> <!-- Close icon -->
                             </button>
                         </div>
                     </div>
@@ -103,12 +110,12 @@
 
     </div>
 
-    <!-- Archivos JavaScript necesarios para la aplicación -->
-    <script src="/BudgetApplication/js/Dato.js"></script>
-    <script src="/BudgetApplication/js/Ingreso.js"></script>
-    <script src="/BudgetApplication/js/Egreso.js"></script>
-    <script src="/BudgetApplication/js/app.js"></script>
-    <script src="/BudgetApplication/js/reloj.js"></script>
+    <!-- JavaScript files -->
+    <script src="/js/Dato.js"></script>
+    <script src="/js/Ingreso.js"></script>
+    <script src="/js/Egreso.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/reloj.js"></script>
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" type="module"></script>
     
 </body>

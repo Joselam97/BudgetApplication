@@ -1,19 +1,19 @@
-/*Codigo para reloj*/
+/* Code for the clock section */
 #reloj { /* id='reloj' */
-    position: absolute; /* Posiciona el reloj en relación al contenedor principal */
-    top: 10px; /* Distancia desde la parte superior */
-    right: 10px; /* Distancia desde el lado derecho */
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
     font-family: 'Roboto', sans-serif; 
     font-size: 10px;
     color: #fcfcfc;
 }
 
-
+/* Container for the clock elements */
 .reloj-contenedor {
-    background-color: rgba(255,80,73, 0.3); /* Fondo semitransparente */
-    padding: 5px; /* Espacio alrededor del contenido interno */
-    text-align: center; /* Centra el texto en el contenedor */
-    border-radius: 5px; /* Bordes redondeados */
+    background-color: rgba(255,80,73, 0.3); 
+    padding: 5px; /* Inner spacing inside the container */
+    text-align: center; 
+    border-radius: 5px; 
 }
 
 #hora { /* id='hora' */
@@ -22,61 +22,74 @@
 
 #fecha { /* id='fecha' */
     font-size: 12px;
-    letter-spacing: 1px; /* Espaciado entre letras */
+    letter-spacing: 1px; /* Adds space between letters for better readability */
 }
 
 
-/* Codigo para app */
-
-* { /* aplica a todo */
+/* General application styles */
+* { 
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+    box-sizing: border-box; /* Includes padding and borders in the element's total width and height */
 }
 
+/* Used for clearfix to handle floated elements */
 .limpiarEstilos::after {
-    content: ""; /* Añade un espacio vacío después del elemento */
-    display: table; /* Estilo para corrección de desbordamiento */
-    clear: both; /* Limpia los flotados en el elemento */
+    content: ""; /* Adds an empty pseudo-element */
+    display: table; /* Ensures proper block-level formatting context */
+    clear: both; /* Clears floating elements inside the parent */
 }
 
 body {
     color: #555;
     font-family: Open Sans;
     font-size: 16px;
-    position: relative; /* Permite posicionar elementos en relación al body */
-    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
-    font-weight: 400; /* Peso de la fuente normal */
+    position: relative; /* Allows positioning relative to the body */
+    height: 100vh; /* Makes the body take up the full height of the viewport */
+    font-weight: 400; 
 }
 
-.derecha { float: right; } /* Alinea el elemento a la derecha */
-.rojo { color: #FF5049 !important; } /* Color rojo para texto, !important para prioridad */
-.rojofocus:focus { border: 1px solid #ff5049 !important; } /* Borde rojo al enfocar */
+/* Class to align elements to the right */
+.derecha { 
+    float: right; 
+} 
 
-/* Estilos del encabezado */
+/* Class for elements that need red text */
+.rojo { 
+    color: #FF5049 !important;  /* Red text with higher priority */
+} 
+
+/* Class for elements with a red border when focused */
+.rojofocus:focus {
+    border: 1px solid #ff5049 !important; 
+} 
+
+/* Header styles */
 .cabecero {
-    height: 40vh; /* Altura del 40% de la pantalla */
-    background-size: cover; /* Ajusta el fondo para cubrir todo el área */
-    background-position: center; /* Centra la imagen de fondo */
+    height: 40vh; /* Takes up 40% of the viewport height */
+    background-size: cover; /* Scales background to cover entire element */
+    background-position: center; 
     position: relative;
     width: 100%;
     padding-top: 150px;
     padding-bottom: 100px;
     color: #fff;
     background: url(fondo.png), #7b4397;
-    background: url(fondo.png), -webkit-gradient(linear, right top, left top, from(#7b4397), to(#dc2430)); /* Degradado de color de fondo */
-    background: url(fondo.png), linear-gradient(to left, #7b4397, #dc2430) /* Degradado de color de fondo */
+    background: url(fondo.png), -webkit-gradient(linear, right top, left top, from(#7b4397), to(#dc2430)); /* Linear gradient with fallback */
+    background: url(fondo.png), linear-gradient(to left, #7b4397, #dc2430) /* Gradient for modern browsers */
 }
 
+/* Budget section */
 .presupuesto {
     position: absolute;
     width: 350px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centra el presupuesto en la pantalla */
+    transform: translate(-50%, -50%); /* Adjusts for exact center alignment */
     font-family: 'Roboto';
     color: #fff;
 }
+
 
 .presupuesto_titulo{
     font-size: 20px;
@@ -84,6 +97,7 @@ body {
     margin-bottom: 10px;
     font-weight: 300;
 }
+
 
 .presupuesto_valor {
     font-weight: 300;
@@ -93,22 +107,25 @@ body {
     letter-spacing: 2px;
 }
 
-/* Estilos de ingresos y egresos */
+/* Styles for income and expense sections */
 .presupuesto_ingreso,
 .presupuesto_egreso {
     padding: 12px;
     text-transform: uppercase;
 }
 
+/* Incomes background color */
 .presupuesto_ingreso {
     margin-bottom: 10px;
-    background-color: #28b9b5; /* Color de fondo de ingresos */
+    background-color: #28b9b5; 
 }
 
+/* Expenses background color */
 .presupuesto_egreso {
-    background-color: #FF5049; /* Color de fondo de egresos */
+    background-color: #FF5049; 
 }
 
+/* Budget text */
 .presupuesto_ingreso--texto,
 .presupuesto_egreso--texto {
     float: left;
@@ -123,6 +140,7 @@ body {
     float: left;
 }
 
+/* Percentage display */
 .presupuesto_ingreso--porcentaje,
 .presupuesto_egreso--porcentaje {
     float: left;
@@ -139,7 +157,7 @@ body {
 }
 
 
-/* Formulario de agregar ingreso o egreso */
+/* Add entry form styles */
 .agregar {
     padding: 14px;
     border-bottom: 1px solid #e7e7e7;
@@ -147,10 +165,11 @@ body {
 }
 
 .agregar_contenedor {
-    margin: 0 auto;
+    margin: 0 auto; /* Centers the container horizontally */
     text-align: center;
 }
 
+/* Styling for dropdown, inputs, and buttons */
 .agregar_tipo {
     width: 55px;
     border: 1px solid #e7e7e7;
@@ -160,7 +179,7 @@ body {
     background-color: #fff;
     margin-right: 10px;
     font-weight: 300;
-    transition: border 0.3s;
+    transition: border 0.3s; /* Smooth border transition on focus */
 }
 
 .agregar_descripcion,
@@ -191,7 +210,7 @@ body {
     margin-left: 10px;
 }
 
-.agregar_btn:active { transform: translateY(2px); } /* Efecto de presionar en el botón */
+.agregar_btn:active { transform: translateY(2px); } /* Slight downward shift on click */
 
 .agregar_tipo:focus,
 .agregar_descripcion:focus,
@@ -202,7 +221,7 @@ body {
 
 .agregar_btn:focus { outline: none; }
 
-/* Contenedor principal */
+/* Principal Container */
 .contenedor {
     font-family: 'Fira Sans',sans-serif;
     width: 860px;
@@ -233,7 +252,7 @@ h2 {
 .ingreso_titulo { color: #28B9B5; }
 .egreso_titulo { color: #FF5049; }
 
-/* Elemento de la lista de ingresos o egresos */
+/* Element on each list of incomes and expenses */
 .elemento {
     padding: 13px;
     border-bottom: 1px solid #e7e7e7;
