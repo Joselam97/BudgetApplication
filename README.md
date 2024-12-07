@@ -2,7 +2,7 @@
 
 A comprehensive budget management web application that enables users to track income and expenses efficiently. Built with JavaScript, HTML, and CSS, the application offers an intuitive interface for adding, viewing, and managing financial transactions, with real-time updates and visual summaries.
 
-## ✨ Features
+## Features
 - **Clock and Date Display**: Shows current time and date at the top for added context.
 - **Add Transactions**: Easily input income and expense records with descriptions.
 - **Category-Based Summaries**: Automatically categorize and display totals for income and expenses.
